@@ -30,6 +30,7 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //GradientAppBar
       appBar: GradientAppBar(
         title: Text("Video"),
         flexibleSpace: Container(
@@ -40,6 +41,7 @@ class _NavigationBarState extends State<NavigationBar> {
           )),
         ),
       ),
+      //CurvedNavigationBar
       bottomNavigationBar: CurvedNavigationBar(
         height: 55,
         index: _currentIndex,

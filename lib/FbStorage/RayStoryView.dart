@@ -31,7 +31,7 @@ class _RayStoryViewState extends State<RayStoryView> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
+//Horizontal Listview Tile
     Widget LoadImages() {
       print(itemList.length);
       return Expanded(
@@ -75,6 +75,7 @@ class _RayStoryViewState extends State<RayStoryView> {
               child: Container(
                 height: 60,
                 width: width,
+                //Horizontal Listview Tile
                 child: LoadImages(),
               ),
             ),
@@ -101,6 +102,7 @@ class _RayStoryViewState extends State<RayStoryView> {
       var data = dataSnapshot.value;
       print(data);
       itemList.clear();
+      //ItemList Preparation
       data.forEach((key, value) {
         itemList.add(value['link']);
       });
@@ -114,6 +116,7 @@ class _RayStoryViewState extends State<RayStoryView> {
   Future<void> getImage() async {
     await ImagePicker.pickImage(source: ImageSource.gallery)
         .then((value) => image = value);
+    //0=> Save to Firebase Storage
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
         .child('new/${Path.basename(image.path)}');
@@ -124,6 +127,7 @@ class _RayStoryViewState extends State<RayStoryView> {
       _uploadedFileUrl = fileURL;
       if (_uploadedFileUrl != null) {
         dynamic key = createCryptoRandomString(32);
+        //0=> Save to Firebase Realtime Database
         fdb.child(key).set({"id": key, "link": _uploadedFileUrl}).then(
             (value) => showToast());
       } else {
