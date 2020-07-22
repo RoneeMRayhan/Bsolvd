@@ -13,7 +13,19 @@ class NavigationBar extends StatefulWidget {
 class _NavigationBarState extends State<NavigationBar> {
   int _currentIndex = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
-  PageController _pageController = PageController();
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +77,6 @@ class _NavigationBarState extends State<NavigationBar> {
             setState(() => _currentIndex = value);
           },
           children: <Widget>[
-            
             RayStoryView(),
             RayStoryView(),
             RayStoryView(),
