@@ -23,6 +23,7 @@ class _RayStoryViewState extends State<RayStoryView> {
   List<String> itemList = List();
   File image;
   String _uploadedFileUrl;
+  final StoryController controller = StoryController();
   String createCryptoRandomString([int length = 32]) {
     final Random _random = Random.secure();
     var values = List<int>.generate(length, (index) => _random.nextInt(256));
@@ -99,6 +100,44 @@ class _RayStoryViewState extends State<RayStoryView> {
                             onComplete: () => print("Completed a cycle"),
                             progressPosition: ProgressPosition.bottom,
                             repeat: false,
+                            inline: true,
+                          ),
+                        ),
+                        Material(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (contex) => MoreStories(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.black54,
+                                borderRadius: BorderRadius.vertical(
+                                  bottom: Radius.circular(8),
+                                ),
+                              ),
+                              padding: EdgeInsets.symmetric(vertical: 8),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 16,
+                                  ),
+                                  Text(
+                                    "View more stories...",
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -117,6 +156,20 @@ class _RayStoryViewState extends State<RayStoryView> {
         ),
       ),
     );
+  }
+
+  show1(String data) {
+    StoryItem.inlineImage(
+        url: data,
+        caption: Text(
+          "Happy Codding",
+          style: TextStyle(
+            color: Colors.white,
+            backgroundColor: Colors.black54,
+            fontSize: 17,
+          ),
+        ),
+        controller: controller);
   }
 
   @override
@@ -165,6 +218,58 @@ class _RayStoryViewState extends State<RayStoryView> {
     Toast.show("ImageSaved", context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
   }
+}
 
-  show1(String i) {}
+class MoreStories extends StatefulWidget {
+  @override
+  _MoreStoriesState createState() => _MoreStoriesState();
+}
+
+class _MoreStoriesState extends State<MoreStories> {
+  final storyController = StoryController();
+  @override
+  void dispose() {
+    storyController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: StoryView(
+          storyItems: [
+            StoryItem.text(
+              title: "Coding story title",
+              backgroundColor: Colors.purple[500],
+            ),
+            StoryItem.text(
+              title: "Amaging\n\nTap to continue.",
+              backgroundColor: Colors.pink[500],
+              textStyle: TextStyle(
+                fontFamily: 'Dancing',
+                fontSize: 40,
+              ),
+            ),
+            StoryItem.pageImage(
+              url:
+                  "https://image.ibb.co/cU4WGx/Omotuo-Groundnut-Soup-braperucci-com-1.jpg",
+              caption: "Still sampling",
+              controller: storyController,
+            ),
+            StoryItem.pageImage(
+                url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
+                caption: "Working with gifs",
+                controller: storyController),
+          ],
+          onStoryShow: (value) {
+            print("Showing a story");
+          },
+          onComplete: () {
+            print("Completed a cycle");
+          },
+          progressPosition: ProgressPosition.top,
+          repeat: false,
+          controller: storyController),
+    );
+  }
 }
