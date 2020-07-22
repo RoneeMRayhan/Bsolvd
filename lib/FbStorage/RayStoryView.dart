@@ -43,6 +43,24 @@ class _RayStoryViewState extends State<RayStoryView> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    fdb.once().then((DataSnapshot dataSnapshot) {
+      print(dataSnapshot);
+      var data = dataSnapshot.value;
+      print(data);
+      itemList.clear();
+      data.forEach((key, value) {
+        itemList.add(value['link']);
+      });
+      setState(() {
+        print("value is ");
+        print(itemList.length);
+      });
+    });
+  }
+
   Future<void> getImage() async {
     await ImagePicker.pickImage(source: ImageSource.gallery)
         .then((value) => image = value);
