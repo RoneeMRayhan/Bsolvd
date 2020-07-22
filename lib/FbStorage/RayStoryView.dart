@@ -8,6 +8,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:story_view/story_view.dart';
 import 'package:toast/toast.dart';
 
 class RayStoryView extends StatefulWidget {
@@ -31,6 +32,8 @@ class _RayStoryViewState extends State<RayStoryView> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    final StoryController controller = StoryController();
 //Horizontal Listview Tile
     Widget LoadImages() {
       print(itemList.length);
@@ -79,6 +82,28 @@ class _RayStoryViewState extends State<RayStoryView> {
                 child: LoadImages(),
               ),
             ),
+            itemList.length == 0
+                ? Text("Loading")
+                : Expanded(
+                    child: ListView(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          height: height - 290,
+                          child: StoryView(
+                            storyItems: [for (var i in itemList) show1(i)],
+                            controller: controller,
+                            onStoryShow: (s) => print("Showing a story"),
+                            onComplete: () => print("Completed a cycle"),
+                            progressPosition: ProgressPosition.bottom,
+                            repeat: false,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
           ],
         ),
       ),
@@ -140,4 +165,6 @@ class _RayStoryViewState extends State<RayStoryView> {
     Toast.show("ImageSaved", context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
   }
+
+  show1(String i) {}
 }
