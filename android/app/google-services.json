@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "135435923639",
+    "firebase_url": "https://bsolvd-f5f74.firebaseio.com",
+    "project_id": "bsolvd-f5f74",
+    "storage_bucket": "bsolvd-f5f74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135435923639:android:e3af642e7fa0cf7027dd32",
+        "android_client_info": {
+          "package_name": "com.example.bsolvd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135435923639-086imufd6vlv5po6p2etvuv1p87m4svq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjd3H9fGj6B85jzNH15ZYRftyrLe4VGpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135435923639-086imufd6vlv5po6p2etvuv1p87m4svq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
