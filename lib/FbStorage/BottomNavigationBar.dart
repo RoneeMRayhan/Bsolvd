@@ -43,7 +43,7 @@ class _NavigationBarState extends State<NavigationBar> {
       bottomNavigationBar: CurvedNavigationBar(
         height: 55,
         index: _currentIndex,
-        color: Colors.amber,
+        color: Colors.limeAccent[700],
         backgroundColor: Colors.grey,
         key: _bottomNavigationKey,
         items: <Widget>[
