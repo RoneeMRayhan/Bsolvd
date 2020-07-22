@@ -30,7 +30,57 @@ class _RayStoryViewState extends State<RayStoryView> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    Widget LoadImages() {
+      print(itemList.length);
+      return Expanded(
+        child: itemList.length == 0
+            ? Text("Loading")
+            : ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: itemList.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Color(0xff9c37c0),
+                        ),
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(
+                            itemList[index],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+      );
+    }
+
     return Scaffold(
+      body: Container(
+        margin: EdgeInsets.all(8),
+        color: Colors.amber,
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
+              child: Container(
+                height: 60,
+                width: width,
+                child: LoadImages(),
+              ),
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => getImage(),
         backgroundColor: Colors.transparent,
