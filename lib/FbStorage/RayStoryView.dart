@@ -36,7 +36,7 @@ class _RayStoryViewState extends State<RayStoryView> {
     double height = MediaQuery.of(context).size.height;
     final StoryController controller = StoryController();
 //Horizontal Listview Tile
-    Widget LoadImages() {
+    Widget loadImages() {
       print(itemList.length);
       return Expanded(
         child: itemList.length == 0
@@ -80,7 +80,7 @@ class _RayStoryViewState extends State<RayStoryView> {
                 height: 60,
                 width: width,
                 //Horizontal Listview Tile
-                child: LoadImages(),
+                child: loadImages(),
               ),
             ),
             itemList.length == 0

@@ -1,3 +1,4 @@
+import 'package:bsolvd/FbStorage/RayGallery.dart';
 import 'package:bsolvd/FbStorage/RayStoryView.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ class _NavigationBarState extends State<NavigationBar> {
           children: <Widget>[
             RayStoryView(),
             RayStoryView(),
-            RayStoryView(),
+            RayGallery(),
           ],
         ),
       ),
