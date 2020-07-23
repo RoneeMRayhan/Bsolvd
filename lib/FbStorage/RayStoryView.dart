@@ -96,9 +96,28 @@ class _RayStoryViewState extends State<RayStoryView> {
                           child: StoryView(
                             storyItems: [
                               //for (var i in itemList) show1(i),
-                              StoryItem.text(title: "null", backgroundColor: Colors.red, roundedTop: true,),
-                              StoryItem.pageVideo("https://firebasestorage.googleapis.com/v0/b/myfirstproject-c67e9.appspot.com/o/video%2F87fe03f0-c5e7--11ea-b384-a9f3", controller: controller,),
-                              StoryItem.inlineImage(url: "https://image.ibb.co/cU4WGx/Omotuo-Groundnut-Soup-braperucci-com-1.jpg", caption: Text("CaptionText",style: TextStyle(color: Colors.white, backgroundColor: Colors.black54,fontSize: 17,),), controller: controller,),
+                              StoryItem.text(
+                                title: "null",
+                                backgroundColor: Colors.red,
+                                roundedTop: true,
+                              ),
+                              StoryItem.pageVideo(
+                                "https://firebasestorage.googleapis.com/v0/b/myfirstproject-c67e9.appspot.com/o/video%2F87fe03f0-c5e7--11ea-b384-a9f3",
+                                controller: controller,
+                              ),
+                              StoryItem.inlineImage(
+                                url:
+                                    "https://image.ibb.co/cU4WGx/Omotuo-Groundnut-Soup-braperucci-com-1.jpg",
+                                caption: Text(
+                                  "CaptionText",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    backgroundColor: Colors.black54,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                controller: controller,
+                              ),
                             ],
                             controller: controller,
                             onStoryShow: (s) => print("Showing a story"),
