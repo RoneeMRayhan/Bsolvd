@@ -95,6 +95,9 @@ class _RayStoryViewState extends State<RayStoryView> {
                           height: height - 290,
                           child: StoryView(
                             storyItems: [
+                              for (var i in itemList) show1(i),
+
+                              /* 
                               //for (var i in itemList) show1(i),
                               StoryItem.text(
                                 title: "null",
@@ -102,7 +105,8 @@ class _RayStoryViewState extends State<RayStoryView> {
                                 roundedTop: true,
                               ),
                               StoryItem.pageVideo(
-                                "https://firebasestorage.googleapis.com/v0/b/myfirstproject-c67e9.appspot.com/o/video%2F87fe03f0-c5e7--11ea-b384-a9f3",
+                                //  "https://firebasestorage.googleapis.com/v0/b/myfirstproject-c67e9.appspot.com/o/video%2F87fe03f0-c5e7--11ea-b384-a9f3",
+                                "https://firebasestorage.googleapis.com/v0/b/bsolvd-f5f74.appspot.com/o/new%2Fimage_picker3708350499361960135.jpg?alt=media&token=53033752-dea6-4910-9753-5641af6d8f93",
                                 controller: controller,
                               ),
                               StoryItem.inlineImage(
@@ -117,7 +121,7 @@ class _RayStoryViewState extends State<RayStoryView> {
                                   ),
                                 ),
                                 controller: controller,
-                              ),
+                              ), */
                             ],
                             controller: controller,
                             onStoryShow: (s) => print("Showing a story"),
@@ -183,17 +187,18 @@ class _RayStoryViewState extends State<RayStoryView> {
   }
 
   show1(String data) {
-    StoryItem.inlineImage(
-        url: data,
-        caption: Text(
-          "Happy Codding",
-          style: TextStyle(
-            color: Colors.white,
-            backgroundColor: Colors.black54,
-            fontSize: 17,
-          ),
+    return StoryItem.inlineImage(
+      url: data,
+      controller: controller,
+      caption: Text(
+        "Happy Codding",
+        style: TextStyle(
+          color: Colors.white,
+          backgroundColor: Colors.black54,
+          fontSize: 17,
         ),
-        controller: controller);
+      ),
+    );
   }
 
   @override
