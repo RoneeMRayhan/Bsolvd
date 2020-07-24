@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 import 'package:video_player/video_player.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:chewie/chewie.dart';
 
 class RayVideo extends StatefulWidget {
@@ -128,8 +127,8 @@ class _RayVideoState extends State<RayVideo> {
 }
 
 class VideoWidget extends StatefulWidget {
-  bool play;
-  String url;
+  final bool play = true;
+  final String url = "https://firebasestorage.googleapis.com/v0/b/bsolvd-f5f74.appspot.com/o/video%2F78d52270-cdb5-11ea-a422-c9efb26b8426?alt=media&token=370c4867-07d3-4811-9e44-03bad3663caf";
   //VideoWidget({Key key}) : super(key: key);
   VideoWidget({Key key, bool play, String url}) : super(key: key);
 
