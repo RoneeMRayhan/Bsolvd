@@ -42,6 +42,8 @@ class _RayVideoState extends State<RayVideo> {
                   itemBuilder: (BuildContext context, int index) => Container(
                     // width: double.infinity,
                     // height: 250,
+                    height: 250,
+                    width: double.infinity,
                     alignment: Alignment.center,
                     child: Container(
                       key: new PageStorageKey(
@@ -139,10 +141,7 @@ class VideoWidget extends StatefulWidget {
   //final String url;
   //VideoWidget({Key key}) : super(key: key);
   //VideoWidget({Key key, bool play, String url}) : super(key: key);
-  VideoWidget({bool play, String url}) {
-    this.play = play;
-    this.url = url;
-  }
+  VideoWidget({this.play, this.url});
 
   @override
   _VideoWidgetState createState() => _VideoWidgetState();
@@ -186,6 +185,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                       key: new PageStorageKey(widget.url),
                       controller: ChewieController(
                         videoPlayerController: videoPlayerController,
+                        //aspectRatio: 3 / 2,
                         aspectRatio: 3 / 2,
                         autoInitialize: true,
                         looping: false,
