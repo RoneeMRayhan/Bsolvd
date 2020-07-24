@@ -23,39 +23,42 @@ class _RayVideoState extends State<RayVideo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListView.separated(
-              shrinkWrap: true,
-              cacheExtent: 1000,
-              physics: NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              key: PageStorageKey(widget.key),
-              addAutomaticKeepAlives: true,
-              itemCount: itemList.isEmpty ? 0 : itemList.length,
-              itemBuilder: (BuildContext context, int index) => Container(
-                width: double.infinity,
-                height: 250,
-                alignment: Alignment.center,
-                child: Container(
-                  key: new PageStorageKey(
-                    "keydata$index",
+      resizeToAvoidBottomPadding: false,
+      body: ListView(padding: const EdgeInsets.all(8), children: <Widget>[
+        Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListView.separated(
+                shrinkWrap: true,
+                cacheExtent: 1000,
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                key: PageStorageKey(widget.key),
+                addAutomaticKeepAlives: true,
+                itemCount: itemList.isEmpty ? 0 : itemList.length,
+                itemBuilder: (BuildContext context, int index) => Container(
+                  width: double.infinity,
+                  height: 250,
+                  alignment: Alignment.center,
+                  child: Container(
+                    key: new PageStorageKey(
+                      "keydata$index",
+                    ),
+                    child: VideoWidget(
+                        play: true,
+                        url: itemList[index]), //url: itemList[index].link,
                   ),
-                  child: VideoWidget(
-                      play: true,
-                      url: itemList[index]), //url: itemList[index].link,
                 ),
+                separatorBuilder: (context, index) {
+                  print("Index ${index + 1}");
+                  return Divider();
+                },
               ),
-              separatorBuilder: (context, index) {
-                print("Index ${index + 1}");
-                return Divider();
-              },
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+      ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           uploadToStorage();
@@ -128,7 +131,8 @@ class _RayVideoState extends State<RayVideo> {
 
 class VideoWidget extends StatefulWidget {
   final bool play = true;
-  final String url = "https://firebasestorage.googleapis.com/v0/b/bsolvd-f5f74.appspot.com/o/video%2F78d52270-cdb5-11ea-a422-c9efb26b8426?alt=media&token=370c4867-07d3-4811-9e44-03bad3663caf";
+  final String url =
+      "https://firebasestorage.googleapis.com/v0/b/bsolvd-f5f74.appspot.com/o/video%2F78d52270-cdb5-11ea-a422-c9efb26b8426?alt=media&token=370c4867-07d3-4811-9e44-03bad3663caf";
   //VideoWidget({Key key}) : super(key: key);
   VideoWidget({Key key, bool play, String url}) : super(key: key);
 
