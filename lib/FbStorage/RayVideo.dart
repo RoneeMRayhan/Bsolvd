@@ -16,8 +16,9 @@ class RayVideo extends StatefulWidget {
 }
 
 class _RayVideoState extends State<RayVideo> {
-  final fdb = FirebaseDatabase.instance.reference().child("Video Links");
+  final fdb = FirebaseDatabase.instance.reference().child("VideoLinks");
   List<String> itemList = new List();
+  //List<ModelProject> itemList = new List();
   FirebaseAuth mAuth = FirebaseAuth.instance;
 
   @override
@@ -34,6 +35,7 @@ class _RayVideoState extends State<RayVideo> {
               scrollDirection: Axis.vertical,
               key: PageStorageKey(widget.key),
               addAutomaticKeepAlives: true,
+              itemCount: itemList.isEmpty ? 0 : itemList.length,
               itemBuilder: (BuildContext context, int index) => Container(
                 width: double.infinity,
                 height: 250,
@@ -43,16 +45,14 @@ class _RayVideoState extends State<RayVideo> {
                     "keydata$index",
                   ),
                   child: VideoWidget(
-                    play: true,
-                    url: itemList[index],
-                    //url: itemList[index].link,
-                  ),
+                      play: true,
+                      url: itemList[index]), //url: itemList[index].link,
                 ),
               ),
               separatorBuilder: (context, index) {
+                print("Index ${index + 1}");
                 return Divider();
               },
-              itemCount: itemList.isEmpty ? 0 : itemList.length,
             ),
           ],
         ),
@@ -78,7 +78,8 @@ class _RayVideoState extends State<RayVideo> {
       mAuth.signInAnonymously().then(
         (value) async {
           final file = await ImagePicker.pickVideo(source: ImageSource.gallery);
-          StorageReference ref = FirebaseStorage.instance.ref().child("video");
+          StorageReference ref =
+              FirebaseStorage.instance.ref().child("video").child(id);
           StorageUploadTask uploadTask =
               ref.putFile(file, StorageMetadata(contentType: 'video/mp4'));
           var storageTaskSnapshot = await uploadTask.onComplete;
@@ -152,6 +153,7 @@ class _VideoWidgetState extends State<VideoWidget> {
   @override
   void dispose() {
     videoPlayerController.dispose();
+    // widget.videoPlayerController.dispose();
     super.dispose();
   }
 
