@@ -258,8 +258,8 @@ class _MoreStoriesState extends State<MoreStories> {
   final StoryController storyController = StoryController();
   @override
   void dispose() {
-    super.dispose();
     storyController.dispose();
+    super.dispose();
   }
 
   @override

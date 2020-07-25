@@ -129,6 +129,7 @@ class _RayVideoState extends State<RayVideo> {
       setState(() {
         print("value is ");
         print(itemList.length);
+        print(itemList);
       });
     });
   }
@@ -175,6 +176,10 @@ class _VideoWidgetState extends State<VideoWidget> {
         if (snapshot.connectionState == ConnectionState.done) {
           return new Container(
             child: Card(
+              color: Colors.amber,
+              shadowColor: Colors.green,
+              //borderOnForeground: false,
+              //shape: ShapeBorder.lerp(null, null, 0.5),
               key: new PageStorageKey(widget.url),
               elevation: 5.0,
               child: Column(

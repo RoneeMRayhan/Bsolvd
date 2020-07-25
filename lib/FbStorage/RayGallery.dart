@@ -103,6 +103,7 @@ class _RayGalleryState extends State<RayGallery> {
 
   @override
   void initState() {
+    super.initState();
     fdb.once().then((DataSnapshot snap) {
       print(snap);
       var data = snap.value;
@@ -116,6 +117,5 @@ class _RayGalleryState extends State<RayGallery> {
         print(itemList.length);
       });
     });
-    super.initState();
   }
 }

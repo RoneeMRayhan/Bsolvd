@@ -25,8 +25,8 @@ class _NavigationBarState extends State<NavigationBar> {
 
   @override
   void dispose() {
-    super.dispose();
     _pageController.dispose();
+    super.dispose();
   }
 
   @override
